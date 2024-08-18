@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/0mwa/testtask-go-url-shortener/internal/helpers"
 	"github.com/0mwa/testtask-go-url-shortener/internal/storage"
@@ -31,9 +32,10 @@ type response struct {
 func (s *Shortener) ShortenURL(c *fiber.Ctx) error {
 	var req request
 
-	if err := c.BodyParser(&req); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "cannot parse JSON"})
+	if err := json.Unmarshal(c.Body(), &req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid JSON"})
 	}
+
 	if status, err := s.validateURL(&req); err != nil {
 		return c.Status(status).JSON(fiber.Map{"error": err.Error()})
 	}
