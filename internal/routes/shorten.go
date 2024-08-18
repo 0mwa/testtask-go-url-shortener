@@ -25,8 +25,8 @@ type request struct {
 	OriginalURL string `json:"url"`
 }
 
-type response struct {
-	ShortenURL string `json:"short"`
+type shortenerResponse struct {
+	ShortenURL string `json:"url"`
 }
 
 func (s *Shortener) ShortenURL(c *fiber.Ctx) error {
@@ -64,11 +64,11 @@ func (s *Shortener) validateURL(req *request) (int, error) {
 	return fiber.StatusOK, nil
 }
 
-func (s *Shortener) createResponse(req request, id string) response {
+func (s *Shortener) createResponse(req request, id string) shortenerResponse {
 	domain := os.Getenv("DOMAIN")
 	shortenURL := domain + "/" + id
 
-	return response{
+	return shortenerResponse{
 		ShortenURL: shortenURL,
 	}
 }
