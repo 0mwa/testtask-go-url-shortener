@@ -66,7 +66,7 @@ func (s *Shortener) validateURL(req *request) (int, error) {
 
 func (s *Shortener) createResponse(req request, id string) shortenerResponse {
 	domain := os.Getenv("DOMAIN")
-	shortenURL := domain + "/" + id
+	shortenURL := "http://" + domain + "/" + id
 
 	return shortenerResponse{
 		ShortenURL: shortenURL,

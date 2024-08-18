@@ -65,7 +65,7 @@ curl -X POST http://localhost:8080 -d '{"url":"https://www.youtube.com/watch?v=d
 Ответ:
 ```JSON
 {
-  "url":"localhost:8080/85cb0c"
+  "url":"http://localhost:8080/85cb0c"
 }
 ```
 
