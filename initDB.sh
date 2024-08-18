@@ -8,4 +8,5 @@ fi
 docker exec -u postgres postgres psql -c "$(cat \
   migrations/begin.sql \
   migrations/links.sql \
+  migrations/commit.sql \
 )" postgres postgres
