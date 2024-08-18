@@ -1,0 +1,13 @@
+version: "1.0"
+
+services:
+  postgres:
+    image: postgres:16.2
+    container_name: postgres
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "${PG_PORT}:${PG_PORT}"
+    environment:
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
